@@ -1,10 +1,18 @@
 import React from 'react';
 
+export interface CropData {
+  x: number;
+  y: number;
+  height: number;
+  width: number;
+}
+
 export interface Image {
   id: string;
   fileName: string;
   original: File;
   preview: string;
+  crop?: CropData;
 }
 
 export type BorderThickness = 'thick' | 'thin' | 'none';

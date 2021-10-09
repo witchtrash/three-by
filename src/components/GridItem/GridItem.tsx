@@ -10,7 +10,7 @@ import { Tooltip } from 'components/Tooltip';
 interface GridItemProps extends BoxProps {
   imageId: string;
 }
-export const GridItem = (props: GridItemProps) => {
+export const GridItem = ({ imageId, ...rest }: GridItemProps) => {
   const context = React.useContext(AppContext);
   const [valid, setValid] = React.useState(true);
 
@@ -19,15 +19,15 @@ export const GridItem = (props: GridItemProps) => {
       if (acceptedFiles.length && context.setImage) {
         const file = acceptedFiles[0];
 
-        context.setImage(props.imageId, {
-          id: props.imageId,
+        context.setImage(imageId, {
+          id: imageId,
           fileName: file.name,
           original: file,
           preview: URL.createObjectURL(file),
         });
       }
     },
-    [context, props.imageId]
+    [context, imageId]
   );
 
   const onDropRejected = React.useCallback(() => {
@@ -44,7 +44,7 @@ export const GridItem = (props: GridItemProps) => {
   return (
     <AspectRatio ratio={1} m="1">
       <Box
-        {...props}
+        {...rest}
         borderColor={context.borderColor}
         borderWidth="thick"
         backgroundColor="gray.100"
@@ -58,10 +58,10 @@ export const GridItem = (props: GridItemProps) => {
         {...getRootProps()}
       >
         <input {...getInputProps()} />
-        {context.images[props.imageId] ? (
+        {context.images[imageId] ? (
           <React.Fragment>
-            <Preview imageId={props.imageId} />
-            <Toolbar imageId={props.imageId} />
+            <Preview imageId={imageId} />
+            <Toolbar imageId={imageId} />
           </React.Fragment>
         ) : (
           <Tooltip
