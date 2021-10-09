@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Divider, Flex, Icon, Stack, Text } from '@chakra-ui/react';
 import { AppContext } from 'app-context';
 import { ColorSetting } from './ColorSetting';
-import { RiBrushLine, RiMore2Fill } from 'react-icons/ri';
+import { RiMore2Fill, RiSettings3Fill } from 'react-icons/ri';
 
 export const Settings = () => {
   const context = React.useContext(AppContext);
@@ -24,8 +24,8 @@ export const Settings = () => {
       <Flex flexDirection="row">
         <Stack flex="1" spacing="3" p="4" backgroundColor="gray.50">
           <Text mb="2" color="pink.600">
-            <Icon mr="2" as={RiBrushLine} />
-            Color settings
+            <Icon mr="2" as={RiSettings3Fill} />
+            Settings
           </Text>
           <ColorSetting
             name="Background"

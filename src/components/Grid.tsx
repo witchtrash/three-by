@@ -16,21 +16,13 @@ export const Grid = () => {
         base: '4',
         md: '8',
       }}
-      maxW="80em"
+      maxW="60em"
       minW="20em"
       w="full"
     >
-      <Item />
-      <Item />
-      <Item />
-
-      <Item />
-      <Item />
-      <Item />
-
-      <Item />
-      <Item />
-      <Item />
+      {new Array(9).fill(0).map((_v, i) => (
+        <Item key={`collage-image-${i}`} imageId={String(i)} />
+      ))}
     </SimpleGrid>
   );
 };
