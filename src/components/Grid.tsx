@@ -1,7 +1,7 @@
 import React from 'react';
 import { SimpleGrid, Box } from '@chakra-ui/layout';
 import { AppContext } from 'app-context';
-import { Item } from 'components/Item';
+import { GridItem } from 'components/GridItem';
 
 export const Grid = () => {
   const context = React.useContext(AppContext);
@@ -21,7 +21,7 @@ export const Grid = () => {
       w="full"
     >
       {new Array(9).fill(0).map((_v, i) => (
-        <Item key={`collage-image-${i}`} imageId={String(i)} />
+        <GridItem key={`collage-image-${i}`} imageId={String(i)} />
       ))}
     </SimpleGrid>
   );
