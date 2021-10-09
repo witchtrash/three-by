@@ -17,6 +17,7 @@ interface IAppContext {
   setBorderColor?: (color: string) => void;
   images: Record<string, Image>;
   setImage?: (id: string, image: Image) => void;
+  removeImage?: (id: string) => void;
 }
 
 export const defaults: IAppContext = {

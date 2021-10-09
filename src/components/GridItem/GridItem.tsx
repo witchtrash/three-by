@@ -2,8 +2,10 @@ import React from 'react';
 import { AppContext } from 'app-context';
 import { AspectRatio, Box, Icon, BoxProps } from '@chakra-ui/react';
 import { useDropzone } from 'react-dropzone';
-import Image from 'next/image';
 import { RiAddCircleFill, RiErrorWarningFill } from 'react-icons/ri';
+import { Preview } from './Preview';
+import { Toolbar } from './Toolbar';
+import { Tooltip } from 'components/Tooltip';
 
 interface GridItemProps extends BoxProps {
   imageId: string;
@@ -49,7 +51,7 @@ export const GridItem = (props: GridItemProps) => {
         color="gray.200"
         w="full"
         borderRadius="lg"
-        transition="0.2s ease-in-out color"
+        transition="0.2s ease-in-out color, opacity"
         _hover={{
           color: 'pink.300',
         }}
@@ -57,22 +59,22 @@ export const GridItem = (props: GridItemProps) => {
       >
         <input {...getInputProps()} />
         {context.images[props.imageId] ? (
-          <Box position="relative" w="full" h="full">
-            <Image
-              alt={`Collage image ${props.imageId}`}
-              objectFit="cover"
-              layout="fill"
-              src={context.images[props.imageId].preview}
-            />
-          </Box>
-        ) : (
           <React.Fragment>
-            {valid ? (
-              <Icon w="4em" h="4em" as={RiAddCircleFill} />
-            ) : (
-              <Icon w="4em" h="4em" as={RiErrorWarningFill} color="red.200" />
-            )}
+            <Preview imageId={props.imageId} />
+            <Toolbar imageId={props.imageId} />
           </React.Fragment>
+        ) : (
+          <Tooltip
+            openDelay={200}
+            label={valid ? 'Add an image' : 'Not a valid image!'}
+          >
+            <Icon
+              w="4em"
+              h="4em"
+              as={valid ? RiAddCircleFill : RiErrorWarningFill}
+              color={!valid ? 'red.200' : undefined}
+            />
+          </Tooltip>
         )}
       </Box>
     </AspectRatio>

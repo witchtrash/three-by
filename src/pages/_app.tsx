@@ -25,6 +25,15 @@ const App = ({ Component, pageProps }: AppProps) => {
     });
   };
 
+  const removeImage = (id: string) => {
+    const { [id]: removed, ...rest } = images;
+    if (removed.preview) {
+      URL.revokeObjectURL(removed.preview);
+    }
+
+    setImages(rest);
+  };
+
   const values = {
     backgroundColor,
     borderColor,
@@ -35,6 +44,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     setBackgroundColor,
     setBorderColor,
     setImage,
+    removeImage,
   };
 
   return (
