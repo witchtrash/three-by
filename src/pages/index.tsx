@@ -1,17 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Layout } from 'components/Layout';
-import { Box, Heading } from '@chakra-ui/react';
+import { Box, Center, Heading, SimpleGrid } from '@chakra-ui/react';
+import { AppContext } from 'app-context';
+import { Grid } from 'components/Grid';
 
 const Index = () => {
+  const context = useContext(AppContext);
+
   return (
     <Layout>
-      <Box w="full">
-        <Heading>asda</Heading>
-        <Heading>asda</Heading>
-        <Heading>asda</Heading>
-        <Heading>asda</Heading>
-        <Heading>asda</Heading>
-      </Box>
+      <Center w="full" h="full" minH="100vh">
+        <Grid />
+      </Center>
     </Layout>
   );
 };

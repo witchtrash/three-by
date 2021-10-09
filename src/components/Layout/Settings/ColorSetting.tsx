@@ -6,12 +6,8 @@ import {
   Popover,
   PopoverTrigger,
   PopoverContent,
-  PopoverHeader,
-  PopoverBody,
-  PopoverFooter,
-  PopoverArrow,
-  PopoverCloseButton,
   useDisclosure,
+  Center,
 } from '@chakra-ui/react';
 import { RgbaStringColorPicker } from 'react-colorful';
 
@@ -40,16 +36,13 @@ export const ColorSetting = (props: ColorSettingProps) => {
             onClick={onOpen}
           />
         </PopoverTrigger>
-        <PopoverContent
-          height="240px"
-          width="240px"
-          padding="20px"
-          boxShadow="lg"
-        >
-          <RgbaStringColorPicker
-            color={props.color}
-            onChange={props.setColor}
-          />
+        <PopoverContent height="13em" width="13em" boxShadow="lg">
+          <Center w="full" h="full">
+            <RgbaStringColorPicker
+              color={props.color}
+              onChange={props.setColor}
+            />
+          </Center>
         </PopoverContent>
         <Text>{props.name}</Text>
       </Popover>

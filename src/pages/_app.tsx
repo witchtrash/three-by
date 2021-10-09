@@ -36,9 +36,7 @@ const App = ({ Component, pageProps }: AppProps) => {
             content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover"
           />
         </Head>
-        <Box minH="100vh">
-          <Component {...pageProps} />
-        </Box>
+        <Component {...pageProps} />
       </ChakraProvider>
     </AppContext.Provider>
   );

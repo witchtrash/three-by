@@ -16,6 +16,8 @@ export const Layout = (props: LayoutProps) => {
       minHeight="100vh"
       height="100%"
       backgroundColor={context.backgroundColor}
+      w="full"
+      minW="20em"
     >
       <Header />
       <Box as="main">{props.children}</Box>

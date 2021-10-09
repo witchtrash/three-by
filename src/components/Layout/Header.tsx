@@ -3,7 +3,7 @@ import { Settings } from './Settings';
 
 export const Header = () => {
   return (
-    <Box as="header">
+    <Box as="header" position="absolute" zIndex="100">
       <Settings />
     </Box>
   );
