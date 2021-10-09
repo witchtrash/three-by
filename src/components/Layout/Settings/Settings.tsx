@@ -12,12 +12,13 @@ export const Settings = () => {
     <Box
       w="240px"
       backgroundColor="gray.50"
-      position="relative"
+      position="absolute"
       top="10"
       left={settingsExpanded ? 0 : -210}
       borderRightRadius="md"
       boxShadow="lg"
       fontSize="lg"
+      z-index="100"
       transition="0.2s ease-in-out left"
     >
       <Flex flexDirection="row">

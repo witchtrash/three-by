@@ -3,7 +3,7 @@ import { Settings } from './Settings';
 
 export const Header = () => {
   return (
-    <Box>
+    <Box as="header">
       <Settings />
     </Box>
   );

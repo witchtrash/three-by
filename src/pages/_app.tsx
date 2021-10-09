@@ -2,31 +2,24 @@ import React from 'react';
 import { Box, ChakraProvider } from '@chakra-ui/react';
 import { AppProps } from 'next/app';
 import { theme } from 'styles/theme';
-import { AppContext } from 'app-context';
+import { AppContext, defaults } from 'app-context';
 import Head from 'next/head';
 import '@fontsource/poppins';
 
 const App = ({ Component, pageProps }: AppProps) => {
-  const [backgroundColor, setBackgroundColor] = React.useState('#b2f5ea');
-  const [borderColor, setBorderColor] = React.useState('#fff');
-  const [spacing, setSpacing] = React.useState('8px');
-  const [rows, setRows] = React.useState(3);
-  const [columns, setColumns] = React.useState(3);
+  const [backgroundColor, setBackgroundColor] = React.useState(
+    defaults.backgroundColor
+  );
+  const [borderColor, setBorderColor] = React.useState(defaults.borderColor);
 
   const values = {
     backgroundColor,
     borderColor,
-    spacing,
-    rows,
-    columns,
   };
 
   const functions = {
     setBackgroundColor,
     setBorderColor,
-    setSpacing,
-    setRows,
-    setColumns,
   };
 
   return (
