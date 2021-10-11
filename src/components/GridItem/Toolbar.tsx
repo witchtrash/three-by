@@ -10,10 +10,12 @@ import {
   ModalHeader,
   ModalCloseButton,
 } from '@chakra-ui/react';
-import { AppContext, CropData } from 'app-context';
+import { AppContext } from 'app-context';
 import { RiCloseLine, RiCropLine } from 'react-icons/ri';
 import { Tooltip } from 'components/Tooltip';
 import { Cropper } from './Cropper';
+import { cropImage } from 'tools/crop';
+import { Area } from 'react-easy-crop/types';
 
 interface ToolbarProps {
   imageId: string;
@@ -28,8 +30,25 @@ export const Toolbar = (props: ToolbarProps) => {
     }
   };
 
-  const onCrop = (cropData: CropData) => {
-    console.log(cropData);
+  const onCrop = (croppedArea: Area) => {
+    const imageUrl = URL.createObjectURL(
+      context.images[props.imageId].original
+    );
+    const imagePromise = cropImage(imageUrl, croppedArea, {
+      height: 300,
+      width: 300,
+    });
+    URL.revokeObjectURL(imageUrl);
+
+    imagePromise.then(blob => {
+      if (context.setImage) {
+        context.setImage(props.imageId, {
+          ...context.images[props.imageId],
+          preview: blob,
+        });
+      }
+    });
+
     onClose();
   };
 

@@ -1,11 +1,8 @@
 import React from 'react';
-import { SimpleGrid, Box } from '@chakra-ui/layout';
-import { AppContext } from 'app-context';
+import { SimpleGrid } from '@chakra-ui/layout';
 import { GridItem } from 'components/GridItem';
 
 export const Grid = () => {
-  const context = React.useContext(AppContext);
-
   return (
     <SimpleGrid
       columns={{
