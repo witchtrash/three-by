@@ -64,25 +64,36 @@ export const Toolbar = (props: ToolbarProps) => {
     >
       <Stack p="1" onClick={e => e.stopPropagation()}>
         <Tooltip label="Crop">
-          <IconButton
-            size="sm"
-            backgroundColor="transparent"
-            aria-label="Crop image"
-            as={RiCropLine}
-            onClick={onOpen}
-          />
+          <span>
+            <IconButton
+              size="sm"
+              backgroundColor="transparent"
+              aria-label="Crop image"
+              icon={<RiCropLine />}
+              fontSize="1.6em"
+              onClick={onOpen}
+            />
+          </span>
         </Tooltip>
         <Tooltip label="Remove">
           <IconButton
             size="sm"
             backgroundColor="transparent"
             aria-label="Remove image"
-            as={RiCloseLine}
+            icon={<RiCloseLine />}
+            fontSize="1.6em"
             onClick={onRemove}
           />
         </Tooltip>
       </Stack>
-      <Modal isOpen={isOpen} onClose={onClose} size="md" isCentered>
+      <Modal
+        isOpen={isOpen}
+        onClose={onClose}
+        size="md"
+        returnFocusOnClose={false}
+        autoFocus={false}
+        isCentered
+      >
         <ModalOverlay />
         <ModalContent
           w={{
