@@ -38,16 +38,17 @@ export const Toolbar = (props: ToolbarProps) => {
       height: 300,
       width: 300,
     });
-    URL.revokeObjectURL(imageUrl);
 
-    imagePromise.then(blob => {
-      if (context.setImage) {
-        context.setImage(props.imageId, {
-          ...context.images[props.imageId],
-          preview: blob,
-        });
-      }
-    });
+    imagePromise
+      .then(blob => {
+        if (context.setImage) {
+          context.setImage(props.imageId, {
+            ...context.images[props.imageId],
+            preview: blob,
+          });
+        }
+      })
+      .finally(() => URL.revokeObjectURL(imageUrl));
 
     onClose();
   };
