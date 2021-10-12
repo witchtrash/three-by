@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Box } from '@chakra-ui/react';
 import { Header } from './Header';
 import { AppContext } from 'app-context';
@@ -8,7 +8,7 @@ interface LayoutProps {
 }
 
 export const Layout = (props: LayoutProps) => {
-  const context = useContext(AppContext);
+  const context = React.useContext(AppContext);
 
   return (
     <Box

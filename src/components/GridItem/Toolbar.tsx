@@ -61,6 +61,7 @@ export const Toolbar = (props: ToolbarProps) => {
       backgroundColor="white"
       opacity="0.6"
       borderEndStartRadius="md"
+      className="generate-hidden"
     >
       <Stack p="1" onClick={e => e.stopPropagation()}>
         <Tooltip label="Crop">

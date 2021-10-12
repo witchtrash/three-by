@@ -2,9 +2,15 @@ import React from 'react';
 import { SimpleGrid } from '@chakra-ui/layout';
 import { GridItem } from 'components/GridItem';
 
-export const Grid = () => {
+// eslint-disable-next-line react/display-name
+export const Grid = React.forwardRef<HTMLDivElement>(function Grid(
+  _props,
+  ref
+) {
   return (
     <SimpleGrid
+      ref={ref}
+      className="grid"
       columns={{
         base: 1,
         md: 3,
@@ -22,4 +28,4 @@ export const Grid = () => {
       ))}
     </SimpleGrid>
   );
-};
+});
