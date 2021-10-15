@@ -60,7 +60,6 @@ async function cloneChildren<T extends HTMLElement>(
           // eslint-disable-next-line no-use-before-define
           .then(() => cloneNode(child, options))
           .then((clonedChild: HTMLElement | null) => {
-            // eslint-disable-next-line promise/always-return
             if (clonedChild) {
               clonedNode.appendChild(clonedChild);
             }
@@ -70,9 +69,16 @@ async function cloneChildren<T extends HTMLElement>(
     .then(() => clonedNode);
 }
 
-function cloneCSSStyle<T extends HTMLElement>(nativeNode: T, clonedNode: T) {
+function cloneCSSStyle<T extends HTMLElement>(
+  nativeNode: T,
+  clonedNode: T,
+  options: Options
+) {
   const source = window.getComputedStyle(nativeNode);
   const target = clonedNode.style;
+
+  const styles = options.styles;
+  const nodeClasses = clonedNode.classList;
 
   if (!target) {
     return;
@@ -89,6 +95,20 @@ function cloneCSSStyle<T extends HTMLElement>(nativeNode: T, clonedNode: T) {
       );
     });
   }
+
+  if (styles === undefined) {
+    return;
+  }
+
+  nodeClasses.forEach(nodeClass => {
+    const rules = styles[nodeClass] ?? {};
+
+    Object.entries(rules).forEach((rule: [string, string]) => {
+      const [name, value] = rule;
+
+      target.setProperty(camelToKebab(name), value, 'important');
+    });
+  });
 }
 
 function cloneInputValue<T extends HTMLElement>(nativeNode: T, clonedNode: T) {
@@ -103,17 +123,22 @@ function cloneInputValue<T extends HTMLElement>(nativeNode: T, clonedNode: T) {
 
 async function decorate<T extends HTMLElement>(
   nativeNode: T,
-  clonedNode: T
+  clonedNode: T,
+  options: Options
 ): Promise<T> {
   if (!(clonedNode instanceof Element)) {
     return Promise.resolve(clonedNode);
   }
 
   return Promise.resolve()
-    .then(() => cloneCSSStyle(nativeNode, clonedNode))
+    .then(() => cloneCSSStyle(nativeNode, clonedNode, options))
     .then(() => clonePseudoElements(nativeNode, clonedNode))
     .then(() => cloneInputValue(nativeNode, clonedNode))
     .then(() => clonedNode);
+}
+
+function camelToKebab(camel: string): string {
+  return camel.replace(/([A-Z0-9])/g, '-$1').toLowerCase();
 }
 
 export async function cloneNode<T extends HTMLElement>(
@@ -128,5 +153,5 @@ export async function cloneNode<T extends HTMLElement>(
   return Promise.resolve(node)
     .then(clonedNode => cloneSingleNode(clonedNode, options) as Promise<T>)
     .then(clonedNode => cloneChildren(node, clonedNode, options))
-    .then(clonedNode => decorate(node, clonedNode));
+    .then(clonedNode => decorate(node, clonedNode, options));
 }

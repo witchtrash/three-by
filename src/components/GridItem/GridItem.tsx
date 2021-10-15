@@ -45,6 +45,7 @@ export const GridItem = ({ imageId, ...rest }: GridItemProps) => {
     <AspectRatio ratio={1} m="1">
       <Box
         {...rest}
+        className="grid-item"
         borderColor={context.borderColor}
         borderWidth="thick"
         backgroundColor="gray.100"

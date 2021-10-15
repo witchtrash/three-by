@@ -65,7 +65,6 @@ export function getBlobFromURL(
   const deferred = window
     .fetch(url)
     .then(res =>
-      // eslint-disable-next-line promise/no-nesting
       res.blob().then(blob => ({
         blob,
         contentType: res.headers.get('Content-Type') || '',

@@ -1,3 +1,5 @@
+import CSS from 'csstype';
+
 export interface Options {
   /**
    * Width in pixels to be applied to node before rendering.
@@ -22,7 +24,7 @@ export interface Options {
   /**
    * An object whose properties to be copied to node's style before rendering.
    */
-  style?: Partial<CSSStyleDeclaration>;
+  styles?: Record<string, CSS.Properties>;
   /**
    * A function taking DOM node as argument. Should return `true` if passed
    * node should be included in the output. Excluding node means excluding

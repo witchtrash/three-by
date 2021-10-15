@@ -94,7 +94,6 @@ export async function embedResources(
     .then(urls =>
       urls.reduce(
         (deferred, url) =>
-          // eslint-disable-next-line promise/no-nesting
           deferred.then(css => embed(css, url, baseUrl, options)),
         Promise.resolve(filteredCSSText)
       )

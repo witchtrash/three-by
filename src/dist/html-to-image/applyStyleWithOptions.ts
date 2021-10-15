@@ -18,12 +18,5 @@ export function applyStyleWithOptions<T extends HTMLElement>(
     style.height = `${options.height}px`;
   }
 
-  const manual = options.style;
-  if (manual != null) {
-    Object.keys(manual).forEach((key: any) => {
-      style[key] = manual[key] as string;
-    });
-  }
-
   return node;
 }
