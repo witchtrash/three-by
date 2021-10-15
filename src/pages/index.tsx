@@ -2,7 +2,7 @@ import React from 'react';
 import { Center, Button, useMediaQuery, Box } from '@chakra-ui/react';
 import { Layout } from 'components/Layout';
 import { Grid } from 'components/Grid';
-import { toJpeg } from 'html-to-image';
+import { toJpeg } from 'dist/html-to-image';
 import { AppContext } from 'app-context';
 
 const Index = () => {
