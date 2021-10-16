@@ -4,6 +4,7 @@ import { Layout } from 'components/Layout';
 import { Grid } from 'components/Grid';
 import { toJpeg } from 'dist/html-to-image';
 import { AppContext } from 'app-context';
+import Head from 'next/head';
 
 const Index = () => {
   const gridRef = React.createRef<HTMLDivElement>();
@@ -34,7 +35,7 @@ const Index = () => {
           gridTemplateRows: '300px 300px 300px',
           height: '100%',
           width: '100%',
-          overflow: 'scroll',
+          overflow: 'hidden',
         },
         gridItem: {
           width: '290px',
@@ -50,42 +51,50 @@ const Index = () => {
         return;
       }
 
-      linkRef.current.download = 'my-image-name.png';
+      linkRef.current.download = `three-by-collage.${
+        new Date().toISOString().split('T')[0]
+      }.png`;
       linkRef.current.href = data;
       linkRef.current.click();
     });
   }, [gridRef, linkRef, context.backgroundColor]);
 
   return (
-    <Layout>
-      <Button
-        className="generate-hidden"
-        position="fixed"
-        bgGradient="linear(to-r, purple.300, pink.300)"
-        backgroundSize="150%"
-        backgroundPosition="0 0"
-        color="white"
-        zIndex="1000"
-        bottom="0"
-        left="50%"
-        size="lg"
-        transform="translate(-50%, -50%)"
-        boxShadow="lg"
-        onClick={generateCollage}
-        transition="0.2s ease-in-out background-position"
-        _hover={{
-          backgroundPosition: '100% 100%',
-        }}
-      >
-        Generate collage
-      </Button>
-      <Center w="full" h="full" minH="100vh">
-        <Grid ref={gridRef} />
-      </Center>
-      <Box display="hidden">
-        <a ref={linkRef} />
-      </Box>
-    </Layout>
+    <React.Fragment>
+      <Head>
+        <title>three by | Collage</title>
+      </Head>
+
+      <Layout>
+        <Button
+          className="generate-hidden"
+          position="fixed"
+          bgGradient="linear(to-r, purple.300, pink.300)"
+          backgroundSize="150%"
+          backgroundPosition="0 0"
+          color="white"
+          zIndex="1000"
+          bottom="0"
+          left="50%"
+          size="lg"
+          transform="translate(-50%, -50%)"
+          boxShadow="lg"
+          onClick={generateCollage}
+          transition="0.2s ease-in-out background-position"
+          _hover={{
+            backgroundPosition: '100% 100%',
+          }}
+        >
+          Generate collage
+        </Button>
+        <Center w="full" h="full" minH="100vh">
+          <Grid ref={gridRef} />
+        </Center>
+        <Box display="hidden">
+          <a ref={linkRef} />
+        </Box>
+      </Layout>
+    </React.Fragment>
   );
 };
 
