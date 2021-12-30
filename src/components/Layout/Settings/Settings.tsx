@@ -3,6 +3,8 @@ import { Box, Divider, Flex, Icon, Stack, Text } from '@chakra-ui/react';
 import { AppContext } from 'app-context';
 import { ColorSetting } from './ColorSetting';
 import { RiMore2Fill, RiSettings3Fill } from 'react-icons/ri';
+import { SettingSlider } from './SettingSlider';
+import { BorderRadii, BorderThicknesses } from 'app-context';
 
 export const Settings = () => {
   const context = React.useContext(AppContext);
@@ -37,6 +39,20 @@ export const Settings = () => {
             name="Border"
             color={context.borderColor}
             setColor={context.setBorderColor}
+          />
+          <Divider />
+          <SettingSlider
+            value={BorderRadii.indexOf(context.borderRadius)}
+            label="Border radius"
+            sliderValues={BorderRadii}
+            setValue={context.setBorderRadius}
+          />
+          <Divider />
+          <SettingSlider
+            value={BorderThicknesses.indexOf(context.borderThickness)}
+            label="Border thickness"
+            sliderValues={BorderThicknesses}
+            setValue={context.setBorderThickness}
           />
         </Stack>
         <Box

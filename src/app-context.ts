@@ -7,8 +7,11 @@ export interface Image {
   preview: string;
 }
 
-export type BorderThickness = 'thick' | 'thin' | 'none';
-export type BorderRadius = 'lg' | 'md' | 'sm' | 'none';
+export const BorderThicknesses = ['none', 'thin', 'medium', 'thick'];
+export const BorderRadii = ['none', 'md', 'lg', 'xl', '2xl'];
+
+export type BorderThickness = typeof BorderThicknesses[number];
+export type BorderRadius = typeof BorderRadii[number];
 
 interface IAppContext {
   backgroundColor: string;
