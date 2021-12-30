@@ -11,6 +11,8 @@ const App = ({ Component, pageProps }: AppProps) => {
     defaults.backgroundColor
   );
   const [borderColor, setBorderColor] = React.useState(defaults.borderColor);
+  const [borderRadius, setBorderRadius] = React.useState(defaults.borderRadius);
+  const [borderThickness, setBorderThickness] = React.useState(defaults.borderThickness);
   const [images, setImages] = React.useState(defaults.images);
 
   const setImage = (id: string, image: Image) => {
@@ -37,12 +39,16 @@ const App = ({ Component, pageProps }: AppProps) => {
   const values = {
     backgroundColor,
     borderColor,
+    borderRadius,
+    borderThickness,
     images,
   };
 
   const functions = {
     setBackgroundColor,
     setBorderColor,
+    setBorderRadius,
+    setBorderThickness,
     setImage,
     removeImage,
   };

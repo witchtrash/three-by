@@ -47,11 +47,11 @@ export const GridItem = ({ imageId, ...rest }: GridItemProps) => {
         {...rest}
         className="gridItem"
         borderColor={context.borderColor}
-        borderWidth="thick"
+        borderWidth={context.borderThickness}
         backgroundColor="gray.100"
         color="gray.200"
         w="full"
-        borderRadius="lg"
+        borderRadius={context.borderRadius}
         transition="0.2s ease-in-out color, opacity"
         _hover={{
           color: 'pink.300',

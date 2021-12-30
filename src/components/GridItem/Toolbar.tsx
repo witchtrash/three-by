@@ -59,8 +59,8 @@ export const Toolbar = (props: ToolbarProps) => {
       zIndex="100"
       top="0"
       right="0"
-      backgroundColor="white"
-      opacity="0.6"
+      backgroundColor={context.borderColor}
+      opacity="1"
       borderEndStartRadius="md"
       className="generate-hidden"
     >
