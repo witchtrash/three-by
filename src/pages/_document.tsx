@@ -25,9 +25,9 @@ const Document = () => (
       <link rel="manifest" href="/site.webmanifest" />
       <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
       <meta name="msapplication-TileColor" content="#da532c" />
-      <meta name="theme-color" content="#eedaff" />
+      <meta name="theme-color" content="#fbb6ce" />
 
-      <meta property="og:title" content="three by" key="og-title" />
+      <meta property="og:title" content="three by - Grids for friends" key="og-title" />
       <meta name="author" content="mari" key="author" />
 
       <meta

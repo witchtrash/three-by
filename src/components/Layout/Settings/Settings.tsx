@@ -15,7 +15,7 @@ import {
   ModalHeader,
   ModalCloseButton,
 } from '@chakra-ui/react';
-import { AppContext } from 'app-context';
+import { useAppContext } from 'app-context';
 import { ColorSetting } from './ColorSetting';
 import {
   RiDownload2Line,
@@ -29,7 +29,7 @@ import { exportData } from 'tools/export';
 import { ImportDropper } from './ImportDropper';
 
 export const Settings = () => {
-  const context = React.useContext(AppContext);
+  const context = useAppContext();
   const [settingsExpanded, setSettingsExpanded] = React.useState(false);
   const linkRef = React.createRef<HTMLAnchorElement>();
   const { isOpen, onOpen, onClose } = useDisclosure();

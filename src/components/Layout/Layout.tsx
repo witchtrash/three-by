@@ -1,14 +1,14 @@
 import React from 'react';
-import { Box } from '@chakra-ui/react';
+import { Box, BoxProps } from '@chakra-ui/react';
 import { Header } from './Header';
-import { AppContext } from 'app-context';
+import { useAppContext } from 'app-context';
 
-interface LayoutProps {
+interface LayoutProps extends BoxProps {
   children: React.ReactNode;
 }
 
-export const Layout = (props: LayoutProps) => {
-  const context = React.useContext(AppContext);
+export const Layout = ({ children, ...rest }: LayoutProps) => {
+  const context = useAppContext();
 
   return (
     <Box
@@ -18,9 +18,10 @@ export const Layout = (props: LayoutProps) => {
       backgroundColor={context.settings.backgroundColor}
       w="full"
       minW="20em"
+      {...rest}
     >
       <Header />
-      <Box as="main">{props.children}</Box>
+      <Box as="main">{children}</Box>
     </Box>
   );
 };

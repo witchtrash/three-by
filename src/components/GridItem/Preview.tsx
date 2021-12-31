@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/react';
 import React from 'react';
-import { AppContext } from 'app-context';
+import { useAppContext } from 'app-context';
 import styled from '@emotion/styled';
 
 const Image = styled.img`
@@ -13,7 +13,7 @@ interface PreviewProps {
   imageId: string;
 }
 export const Preview = (props: PreviewProps) => {
-  const context = React.useContext(AppContext);
+  const context = useAppContext();
 
   return (
     <Box position="relative" w="full" h="full" className="gridImage">

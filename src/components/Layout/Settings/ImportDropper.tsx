@@ -1,5 +1,5 @@
 import { Box, Button, Flex, Icon, Spinner, Text } from '@chakra-ui/react';
-import { AppContext } from 'app-context';
+import { useAppContext } from 'app-context';
 import React from 'react';
 import Dropzone from 'react-dropzone';
 import { RiAddCircleFill } from 'react-icons/ri';
@@ -9,7 +9,7 @@ interface ImportDropperProps {
   onClose: () => void;
 }
 export const ImportDropper = (props: ImportDropperProps) => {
-  const context = React.useContext(AppContext);
+  const context = useAppContext();
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(false);
 

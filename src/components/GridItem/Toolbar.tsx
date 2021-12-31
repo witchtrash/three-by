@@ -10,7 +10,7 @@ import {
   ModalHeader,
   ModalCloseButton,
 } from '@chakra-ui/react';
-import { AppContext } from 'app-context';
+import { useAppContext } from 'app-context';
 import { RiCloseLine, RiCropLine } from 'react-icons/ri';
 import { Tooltip } from 'components/Tooltip';
 import { Cropper } from './Cropper';
@@ -21,13 +21,11 @@ interface ToolbarProps {
   imageId: string;
 }
 export const Toolbar = (props: ToolbarProps) => {
-  const context = React.useContext(AppContext);
+  const context = useAppContext();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const onRemove = () => {
-    if (context.removeImage) {
-      context.removeImage(props.imageId);
-    }
+    context.removeImage(props.imageId);
   };
 
   const onCrop = (croppedArea: Area) => {
@@ -41,12 +39,10 @@ export const Toolbar = (props: ToolbarProps) => {
 
     imagePromise
       .then(blob => {
-        if (context.setImage) {
-          context.setImage(props.imageId, {
-            ...context.images[props.imageId],
-            preview: blob,
-          });
-        }
+        context.setImage(props.imageId, {
+          ...context.images[props.imageId],
+          preview: blob,
+        });
       })
       .finally(() => URL.revokeObjectURL(imageUrl));
 

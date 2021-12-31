@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppContext } from 'app-context';
+import { useAppContext } from 'app-context';
 import { AspectRatio, Box, Icon, BoxProps } from '@chakra-ui/react';
 import { useDropzone } from 'react-dropzone';
 import { RiAddCircleFill, RiErrorWarningFill } from 'react-icons/ri';
@@ -11,12 +11,12 @@ interface GridItemProps extends BoxProps {
   imageId: string;
 }
 export const GridItem = ({ imageId, ...rest }: GridItemProps) => {
-  const context = React.useContext(AppContext);
+  const context = useAppContext();
   const [valid, setValid] = React.useState(true);
 
   const onDrop = React.useCallback(
     async (acceptedFiles: File[]) => {
-      if (acceptedFiles.length && context.setImage) {
+      if (acceptedFiles.length) {
         const file = acceptedFiles[0];
         const preview = URL.createObjectURL(file);
 

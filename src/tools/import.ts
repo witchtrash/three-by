@@ -18,35 +18,25 @@ const dataUrlToBlob = async (dataUrl: string): Promise<Blob> =>
 const populateSettings = async (data: ContextDTO, context: IAppContext) => {
   const { settings, images } = data;
 
-  if (context.setBackgroundColor) {
-    context.setBackgroundColor(settings.backgroundColor);
-  }
-  if (context.setBorderColor) {
-    context.setBorderColor(settings.borderColor);
-  }
-  if (context.setBorderRadius) {
-    context.setBorderRadius(settings.borderRadius);
-  }
-  if (context.setBorderThickness) {
-    context.setBorderThickness(settings.borderThickness);
-  }
+  context.setBackgroundColor(settings.backgroundColor);
+  context.setBorderColor(settings.borderColor);
+  context.setBorderRadius(settings.borderRadius);
+  context.setBorderThickness(settings.borderThickness);
 
-  if (context.loadImages) {
-    const importImages: Image[] = [];
-    for (const image of images) {
-      const imageId = image.id;
-      const previewBlob = await dataUrlToBlob(image.preview);
-      const imageBlob = await dataUrlToBlob(image.original);
-      const preview = URL.createObjectURL(previewBlob);
-      const original = new File([imageBlob], imageId);
+  const importImages: Image[] = [];
+  for (const image of images) {
+    const imageId = image.id;
+    const previewBlob = await dataUrlToBlob(image.preview);
+    const imageBlob = await dataUrlToBlob(image.original);
+    const preview = URL.createObjectURL(previewBlob);
+    const original = new File([imageBlob], imageId);
 
-      importImages.push({
-        original,
-        preview,
-        id: imageId,
-        fileName: imageId,
-      });
-    }
-    context.loadImages(importImages);
+    importImages.push({
+      original,
+      preview,
+      id: imageId,
+      fileName: imageId,
+    });
   }
+  context.loadImages(importImages);
 };

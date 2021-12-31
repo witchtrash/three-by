@@ -22,17 +22,17 @@ interface Settings {
 
 export interface IAppContext {
   settings: Settings;
-  setBackgroundColor?: (color: string) => void;
-  setBorderColor?: (color: string) => void;
   images: Record<string, Image>;
-  setImage?: (id: string, image: Image) => void;
-  loadImages?: (images: Image[]) => void;
-  removeImage?: (id: string) => void;
-  setBorderRadius?: (radius: BorderRadius) => void;
-  setBorderThickness?: (thickness: BorderThickness) => void;
+  setBackgroundColor: (color: string) => void;
+  setBorderColor: (color: string) => void;
+  setImage: (id: string, image: Image) => void;
+  loadImages: (images: Image[]) => void;
+  removeImage: (id: string) => void;
+  setBorderRadius: (radius: BorderRadius) => void;
+  setBorderThickness: (thickness: BorderThickness) => void;
 }
 
-export const defaults: IAppContext = {
+export const defaults: Pick<IAppContext, 'images' | 'settings'> = {
   settings: {
     backgroundColor: 'rgba(238, 218, 255, 1)',
     borderColor: 'rgba(255, 255, 255, 1)',
@@ -42,4 +42,14 @@ export const defaults: IAppContext = {
   images: {},
 };
 
-export const AppContext = React.createContext<IAppContext>(defaults);
+export const AppContext = React.createContext<IAppContext | undefined>(
+  undefined
+);
+
+export const useAppContext = () => {
+  const context = React.useContext(AppContext);
+  if (context === undefined) {
+    throw new Error('AppContext is undefined!');
+  }
+  return context;
+};

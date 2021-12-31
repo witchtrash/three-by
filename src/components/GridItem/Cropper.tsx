@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactCropper from 'react-easy-crop';
 import { Box, Button, Flex } from '@chakra-ui/react';
-import { AppContext } from 'app-context';
+import { useAppContext } from 'app-context';
 import { Area, Point } from 'react-easy-crop/types';
 
 interface CropperProps {
@@ -10,7 +10,7 @@ interface CropperProps {
   onCrop: (cropData: Area) => void;
 }
 export const Cropper = (props: CropperProps) => {
-  const context = React.useContext(AppContext);
+  const context = useAppContext();
   const image = React.useRef<string>();
 
   const [crop, setCrop] = React.useState<Point>({
