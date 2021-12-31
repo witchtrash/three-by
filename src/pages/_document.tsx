@@ -32,17 +32,17 @@ const Document = () => (
 
       <meta
         name="description"
-        content="Three by three collage generator"
+        content="Show off your superior taste with a convenient 3x3 grid."
         key="description"
       />
       <meta
         property="og:description"
-        content="Three by three collage generator"
+        content="Show off your superior taste with a convenient 3x3 grid."
         key="og-description"
       />
-      <meta property="og:site_name" content="three-by.hate.computer" />
+      <meta property="og:site_name" content="three.gay" />
       <meta property="og:type" content="website" key="og-type" />
-      <meta property="og:url" content="https://three-by.hate.computer" />
+      <meta property="og:url" content="https://three.gay" />
       <meta property="og:image" content="/og.webp" key="og-image" />
       <meta property="twitter:card" content="summary_large_image" />
       <meta property="twitter:image" content="/og.webp" key="og-image" />
