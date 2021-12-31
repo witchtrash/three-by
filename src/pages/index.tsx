@@ -106,9 +106,11 @@ const Index = () => {
           transform="translate(-50%, -50%)"
           boxShadow="lg"
           onClick={generateCollage}
-          transition="0.2s ease-in-out background-position"
+          transition="0.2s ease-in-out"
+          transitionProperty="background-position, bottom"
           _hover={{
             backgroundPosition: '100% 100%',
+            bottom: '5px',
           }}
         >
           Generate collage

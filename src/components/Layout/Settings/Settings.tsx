@@ -99,6 +99,7 @@ export const Settings = () => {
             variant="solid"
             backgroundColor="pink.200"
             color="gray.800"
+            transition="0.2s ease-in-out background-color"
             _hover={{
               backgroundColor: 'pink.300',
             }}
@@ -110,6 +111,7 @@ export const Settings = () => {
           <Button
             backgroundColor="purple.200"
             color="gray.800"
+            transition="0.2s ease-in-out background-color"
             _hover={{
               backgroundColor: 'purple.300',
             }}

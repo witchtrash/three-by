@@ -53,9 +53,11 @@ export const GridItem = ({ imageId, ...rest }: GridItemProps) => {
         color="gray.200"
         w="full"
         borderRadius={context.settings.borderRadius}
-        transition="0.2s ease-in-out color, opacity"
+        transition="0.2s ease-in-out"
+        transitionProperty="color, opacity, background-color"
         _hover={{
-          color: 'pink.300',
+          color: 'pink.200',
+          backgroundColor: 'white',
         }}
         {...getRootProps()}
       >
