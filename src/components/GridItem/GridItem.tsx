@@ -15,15 +15,16 @@ export const GridItem = ({ imageId, ...rest }: GridItemProps) => {
   const [valid, setValid] = React.useState(true);
 
   const onDrop = React.useCallback(
-    (acceptedFiles: File[]) => {
+    async (acceptedFiles: File[]) => {
       if (acceptedFiles.length && context.setImage) {
         const file = acceptedFiles[0];
+        const preview = URL.createObjectURL(file);
 
         context.setImage(imageId, {
           id: imageId,
           fileName: file.name,
           original: file,
-          preview: URL.createObjectURL(file),
+          preview,
         });
       }
     },
@@ -46,12 +47,12 @@ export const GridItem = ({ imageId, ...rest }: GridItemProps) => {
       <Box
         {...rest}
         className="gridItem"
-        borderColor={context.borderColor}
-        borderWidth={context.borderThickness}
+        borderColor={context.settings.borderColor}
+        borderWidth={context.settings.borderThickness}
         backgroundColor="gray.100"
         color="gray.200"
         w="full"
-        borderRadius={context.borderRadius}
+        borderRadius={context.settings.borderRadius}
         transition="0.2s ease-in-out color, opacity"
         _hover={{
           color: 'pink.300',

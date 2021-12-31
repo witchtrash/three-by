@@ -1,11 +1,11 @@
 import { Area } from 'react-easy-crop/types';
 
-interface Dimensions {
+export interface Dimensions {
   width: number;
   height: number;
 }
 
-const loadImage = (url: string): Promise<HTMLImageElement> =>
+export const loadImage = (url: string): Promise<HTMLImageElement> =>
   new Promise((resolve, reject) => {
     const image = new Image();
     image.addEventListener('load', () => resolve(image));

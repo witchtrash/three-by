@@ -23,7 +23,7 @@ const Index = () => {
     toJpeg(gridRef.current, {
       quality: 0.98,
       filter: filterNode,
-      backgroundColor: context.backgroundColor,
+      backgroundColor: context.settings.backgroundColor,
       canvasHeight: 1000,
       canvasWidth: 1000,
       height: 930,
@@ -57,7 +57,7 @@ const Index = () => {
       linkRef.current.href = data;
       linkRef.current.click();
     });
-  }, [gridRef, linkRef, context.backgroundColor]);
+  }, [gridRef, linkRef, context.settings.backgroundColor]);
 
   return (
     <React.Fragment>
@@ -91,7 +91,7 @@ const Index = () => {
           <Grid ref={gridRef} />
         </Center>
         <Box display="hidden">
-          <a ref={linkRef} />
+          <a ref={linkRef} rel="nofollow" tabIndex={-1} />
         </Box>
       </Layout>
     </React.Fragment>

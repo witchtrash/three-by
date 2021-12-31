@@ -8,11 +8,17 @@ import '@fontsource/poppins';
 
 const App = ({ Component, pageProps }: AppProps) => {
   const [backgroundColor, setBackgroundColor] = React.useState(
-    defaults.backgroundColor
+    defaults.settings.backgroundColor
   );
-  const [borderColor, setBorderColor] = React.useState(defaults.borderColor);
-  const [borderRadius, setBorderRadius] = React.useState(defaults.borderRadius);
-  const [borderThickness, setBorderThickness] = React.useState(defaults.borderThickness);
+  const [borderColor, setBorderColor] = React.useState(
+    defaults.settings.borderColor
+  );
+  const [borderRadius, setBorderRadius] = React.useState(
+    defaults.settings.borderRadius
+  );
+  const [borderThickness, setBorderThickness] = React.useState(
+    defaults.settings.borderThickness
+  );
   const [images, setImages] = React.useState(defaults.images);
 
   const setImage = (id: string, image: Image) => {
@@ -36,11 +42,21 @@ const App = ({ Component, pageProps }: AppProps) => {
     setImages(rest);
   };
 
+  const loadImages = (images: Image[]) => {
+    const imageDict: Record<string, Image> = {};
+    for (const image of images) {
+      imageDict[image.id] = image;
+    }
+    setImages(imageDict);
+  };
+
   const values = {
-    backgroundColor,
-    borderColor,
-    borderRadius,
-    borderThickness,
+    settings: {
+      backgroundColor,
+      borderColor,
+      borderRadius,
+      borderThickness,
+    },
     images,
   };
 
@@ -51,6 +67,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     setBorderThickness,
     setImage,
     removeImage,
+    loadImages,
   };
 
   return (

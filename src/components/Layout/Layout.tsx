@@ -15,7 +15,7 @@ export const Layout = (props: LayoutProps) => {
       margin="0 auto"
       minHeight="100vh"
       height="100%"
-      backgroundColor={context.backgroundColor}
+      backgroundColor={context.settings.backgroundColor}
       w="full"
       minW="20em"
     >
